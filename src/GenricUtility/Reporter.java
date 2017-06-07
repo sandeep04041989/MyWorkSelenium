@@ -74,7 +74,44 @@ public class Reporter {
 	}
 	
 	
-	
+	public static void setCellData(String Result,  int RowNum, int ColNum) throws Exception	{
+
+			try{
+
+			
+  			Row  = ExcelWSheet.getRow(RowNum);
+
+			Cell = Row.getCell(ColNum, org.apache.poi.ss.usermodel.Row.RETURN_BLANK_AS_NULL);
+
+			if (Cell == null) {
+
+				Cell = Row.createCell(ColNum);
+
+				Cell.setCellValue(Result);
+
+				} else {
+
+					Cell.setCellValue(Result);
+
+				}
+
+  // Constant variables Test Data path and Test Data file name
+
+  				FileOutputStream fileOut = new FileOutputStream(ConstantAndVariables.ReportFilePath);
+
+  				ExcelWBook.write(fileOut);
+
+  				fileOut.flush();
+
+					fileOut.close();
+
+				}catch(Exception e){
+
+					throw (e);
+
+			}
+
+		}
 	
 	//This method is to write in the Excel cell, Row num and Col num are the parameters
 
@@ -92,7 +129,7 @@ public class Reporter {
 					   
 								   
 								    Row  = ExcelWSheet.getRow(intRowcounter);						
-									Cell = Row.getCell(intColumnCounter, Row.RETURN_BLANK_AS_NULL);
+									Cell = Row.getCell(intColumnCounter, org.apache.poi.ss.usermodel.Row.RETURN_BLANK_AS_NULL);
 						
 									if (Cell == null) 
 									{
@@ -109,7 +146,17 @@ public class Reporter {
 										Cell.setCellValue(Status);
 										Cell = Row.createCell(intColumnCounter+5);
 										Cell.setCellValue(Snapshot);
-										intRowcounter=intRowcounter+1;
+										
+
+						  				FileOutputStream fileOut = new FileOutputStream(ConstantAndVariables.ReportFilePath);
+						
+						  				ExcelWBook.write(fileOut);
+						
+						  				fileOut.flush();
+						
+										fileOut.close(); 
+										
+										
 									} 
 									else 
 									{
@@ -120,14 +167,7 @@ public class Reporter {
 									}
 						
 										// Constant variables Test Data path and Test Data file name
-						
-						  				FileOutputStream fileOut = new FileOutputStream(ConstantAndVariables.ReportFilePath);
-						
-						  				ExcelWBook.write(fileOut);
-						
-						  				fileOut.flush();
-						
-										fileOut.close(); 						   
+												   
 								   
 							   }
 							  			
@@ -137,7 +177,7 @@ public class Reporter {
 								catch(Exception e)
 								{
 							
-								  throw (e);
+								System.out.println(e);
 					
 								 }
 			
@@ -205,6 +245,13 @@ public class Reporter {
 	
 	
 	
+	
+	 public static void main(String[] args) throws Exception  {
+		 
+		 Reporter.setExcelFile(ConstantAndVariables.ReportFilePath, "FirstSheet");
+		 Reporter.setCellData("Test", 1, 1);
+		 
+	 }
 	
 	
 	

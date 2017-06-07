@@ -17,12 +17,12 @@ public class VerifyHomePage {
 	
 	
 	
-	 public static void main(String[] args) throws Exception {
+	 public static void main(String[] args) throws Exception  {
 		 
 		 
 		// Reporter.CreateTemplate(ConstantAndVariables.ReportFilePath);
 		 
-		 Reporter.ReporterEvent("asas", "sasa", "sasasa", "strasasActual", "Status", "Snapshot");
+		// Reporter.ReporterEvent("asas", "sasa", "sasasa", "strasasActual", "Status", "Snapshot");
 		// Reporter.ReporterEvent("asas", "sasa", "sasasa", "strasasActual", "Status", "Snapshot");
 		// Reporter.ReporterEvent("asas", "sasa", "sasasa", "strasasActual", "Status", "Snapshot");
 		 
@@ -34,11 +34,7 @@ public class VerifyHomePage {
 		// Home_Page.txtbx_User(driver,"UserName").sendKeys(ConstantAndVariables.Username);
 		// Home_Page.txtbx_Pwd(driver,"Password").sendKeys(ConstantAndVariables.Password);
 		// Home_Page.lnk_SignOn(driver,"SignOnlink").click();
-		// driver.close();
-		 
-		 
-		 
-		 
+	
 		 
 		 
 	 }
