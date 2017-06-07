@@ -28,6 +28,27 @@ public class Reporter {
 	private static XSSFRow Row;
 	
 	
+	//This method is to read the test data from the Excel cell, in this we are passing parameters as Row num and Col num
+
+    public static String getCellData(int RowNum, int ColNum) throws Exception{
+
+			try{
+
+  			Cell = ExcelWSheet.getRow(RowNum).getCell(ColNum);
+
+  			String CellData = Cell.getStringCellValue();
+
+  			return CellData;
+
+  			}catch (Exception e){
+
+				return"";
+
+  			}
+
+    }
+	
+	
 	//This method is to set the File path and to open the Excel file, Pass Excel Path and Sheetname as Arguments to this method
 
 	public static void setExcelFile(String Path,String SheetName) throws Exception {
@@ -55,17 +76,75 @@ public class Reporter {
 	
 	
 	
-public static void ReporterEvent(String strFilePath,String Scriptname,String strDesc,String strExpected,String strActual,String Status, String Snapshot)
+	//This method is to write in the Excel cell, Row num and Col num are the parameters
 
-{
+	public static void ReporterEvent(String StepName,String strDesc,String strExpected,String strActual,String Status, String Snapshot) throws Exception	{
+				
+				int intRowcounter=0;
+				int intColumnCounter=0;
+			try{
+
+					
+
+				Reporter.setExcelFile(ConstantAndVariables.ReportFilePath, "FirstSheet");
+				   for(int Increment = 0;Increment<=5;Increment+=1){
+					   
+					   
+								   
+								    Row  = ExcelWSheet.getRow(intRowcounter);						
+									Cell = Row.getCell(intColumnCounter, Row.RETURN_BLANK_AS_NULL);
+						
+									if (Cell == null) 
+									{
+						
+										Cell = Row.createCell(intColumnCounter);			
+										Cell.setCellValue(StepName);
+										Cell = Row.createCell(intColumnCounter+1);
+										Cell.setCellValue(strDesc);
+										Cell = Row.createCell(intColumnCounter+2);
+										Cell.setCellValue(strExpected);
+										Cell = Row.createCell(intColumnCounter+3);
+										Cell.setCellValue(strActual);
+										Cell = Row.createCell(intColumnCounter+4);
+										Cell.setCellValue(Status);
+										Cell = Row.createCell(intColumnCounter+5);
+										Cell.setCellValue(Snapshot);
+										intRowcounter=intRowcounter+1;
+									} 
+									else 
+									{
+						
+										  intRowcounter=intRowcounter+1;
+											//Cell.setCellValue(Result);
+						
+									}
+						
+										// Constant variables Test Data path and Test Data file name
+						
+						  				FileOutputStream fileOut = new FileOutputStream(ConstantAndVariables.ReportFilePath);
+						
+						  				ExcelWBook.write(fileOut);
+						
+						  				fileOut.flush();
+						
+										fileOut.close(); 						   
+								   
+							   }
+							  			
+							
+									}
+								
+								catch(Exception e)
+								{
+							
+								  throw (e);
+					
+								 }
+			
+		}
 	
 	
-	
-	
-	
-}
-	
-	
+
 	
 	
 	
@@ -86,7 +165,7 @@ public static void ReporterEvent(String strFilePath,String Scriptname,String str
 	            
 	            
 	            XSSFRow rowhead = sheet.createRow((short)0);
-	                    
+	                
 	            XSSFCell cell1 = rowhead.createCell(0);
 	    	    cell1.setCellValue("ScriptName");
 	    	    cell1.setCellStyle(style);

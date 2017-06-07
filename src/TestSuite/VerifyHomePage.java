@@ -17,7 +17,14 @@ public class VerifyHomePage {
 	
 	
 	
-	 public static void main(String[] args) {
+	 public static void main(String[] args) throws Exception {
+		 
+		 
+		// Reporter.CreateTemplate(ConstantAndVariables.ReportFilePath);
+		 
+		 Reporter.ReporterEvent("asas", "sasa", "sasasa", "strasasActual", "Status", "Snapshot");
+		// Reporter.ReporterEvent("asas", "sasa", "sasasa", "strasasActual", "Status", "Snapshot");
+		// Reporter.ReporterEvent("asas", "sasa", "sasasa", "strasasActual", "Status", "Snapshot");
 		 
 		// WebDriver driver =BrowserDriver.createChromeDriver();
 		
@@ -31,7 +38,6 @@ public class VerifyHomePage {
 		 
 		 
 		 
-		 Reporter.CreateTemplate(ConstantAndVariables.ReportFilePath);
 		 
 		 
 		 
